@@ -35,7 +35,8 @@ span {
   font-weight: 300;
 }
 
-.addPost {
+.addPost,
+.addPut {
   text-decoration: underline 2px solid black;
   margin-top: 50px;
   margin-bottom: 0;

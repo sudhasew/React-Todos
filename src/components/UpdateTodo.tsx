@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
 
-export default class AddPostTodo extends React.Component {
+export default class UpdateTodo extends React.Component {
   state = {
+    id: "",
     title: "",
     description: "",
     due_date: "",
@@ -18,7 +19,7 @@ export default class AddPostTodo extends React.Component {
   handleSubmit = (event: any) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3004/todo", {
+      .put("http://localhost:3004/todo/" + this.state.id, {
         title: this.state.title,
         description: this.state.description,
         due_date: this.state.due_date,
@@ -33,14 +34,23 @@ export default class AddPostTodo extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="addPost">Adding or Posting todo</h1>
+        <h1 className="addPut">Updating todo</h1>
         <form onSubmit={this.handleSubmit}>
+          <label>
+            Id:
+            <input
+              type="text"
+              name="id"
+              value={this.state.id}
+              onChange={this.handleChange}
+            />
+          </label>
+          <br />
           <label>
             Title:
             <input
               type="text"
               name="title"
-              required
               value={this.state.title}
               onChange={this.handleChange}
             />
@@ -51,7 +61,6 @@ export default class AddPostTodo extends React.Component {
             <input
               type="text"
               name="description"
-              required
               value={this.state.description}
               onChange={this.handleChange}
             />
@@ -77,7 +86,7 @@ export default class AddPostTodo extends React.Component {
             />
           </label>
           <div>
-            <button type="submit">Add Post</button>
+            <button type="submit">Update</button>
           </div>
         </form>
       </div>
