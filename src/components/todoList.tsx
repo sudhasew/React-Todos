@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { GetAlltodo } from "../services/api";
 
@@ -9,10 +10,17 @@ export function TodoList() {
     });
   }, []);
 
+  function deleteTodo(id: number) {
+    console.log("deleting id", id);
+    axios
+      .delete("http://localhost:3004/todo/" + id)
+      .then((res) => console.log(res));
+  }
+
   return (
     <div>
       <ul className="toDoul">
-        {toDolist.map((toDo) => (
+        {toDolist.map((toDo, i) => (
           <li className="toDoli" key={toDo.id}>
             <h2>
               Id: <span> {toDo.id} </span>
@@ -30,6 +38,14 @@ export function TodoList() {
             <h2>
               Copmleted:
               <span> {toDo.completed.toString()} </span>
+            </h2>
+            <h2>
+              Delete Post:
+              <span>
+                <button className="delete" onClick={() => deleteTodo(toDo.id)}>
+                  Delete
+                </button>
+              </span>
             </h2>
           </li>
         ))}

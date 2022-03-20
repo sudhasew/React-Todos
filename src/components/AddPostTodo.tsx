@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-export default class AddTitle extends React.Component {
+export default class AddPostTodo extends React.Component {
   state = {
     title: "",
     description: "",
@@ -33,6 +33,7 @@ export default class AddTitle extends React.Component {
   render() {
     return (
       <div>
+        <h1 className="addPost">Adding or Posting todo</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
             Title:
@@ -75,7 +76,9 @@ export default class AddTitle extends React.Component {
               onChange={this.handleChange}
             />
           </label>
-          <button type="submit">Add</button>
+          <div>
+            <button type="submit">Add</button>
+          </div>
         </form>
       </div>
     );
